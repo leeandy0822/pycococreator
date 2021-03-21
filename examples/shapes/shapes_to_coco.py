@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import datetime
 import json
 import os
@@ -9,43 +10,134 @@ from PIL import Image
 import numpy as np
 from pycococreatortools import pycococreatortools
 
-ROOT_DIR = 'train'
-IMAGE_DIR = os.path.join(ROOT_DIR, "shapes_train2018")
-ANNOTATION_DIR = os.path.join(ROOT_DIR, "annotations")
+outputname = sys.argv[1]
+print(outputname)
+
+ROOT_DIR = "validation"
+IMAGE_DIR = os.path.join(ROOT_DIR, 'all')
+ANNOTATION_DIR = os.path.join(ROOT_DIR,"all-annotation")
+
+
 
 INFO = {
-    "description": "Example Dataset",
+    "description": "AndySer Brandname Dataset",
     "url": "https://github.com/waspinator/pycococreator",
     "version": "0.1.0",
-    "year": 2018,
-    "contributor": "waspinator",
+    "year": 2021,
+    "contributor": "AndyLee",
     "date_created": datetime.datetime.utcnow().isoformat(' ')
 }
 
 LICENSES = [
     {
         "id": 1,
-        "name": "Attribution-NonCommercial-ShareAlike License",
-        "url": "http://creativecommons.org/licenses/by-nc-sa/2.0/"
+        "name": "Attribution-NonCovivaercial-ShareAlike License",
+        "url": "http://creativecovivaons.org/licenses/by-nc-sa/2.0/"
     }
 ]
 
 CATEGORIES = [
     {
         'id': 1,
-        'name': 'square',
-        'supercategory': 'shape',
+        'name': '3m',
+        'supercategory': 'brandname',
     },
     {
         'id': 2,
-        'name': 'circle',
-        'supercategory': 'shape',
+        'name': 'andes',
+        'supercategory': 'brandname',
     },
     {
         'id': 3,
-        'name': 'triangle',
-        'supercategory': 'shape',
+        'name': 'cocacola',
+        'supercategory': 'brandname',
     },
+    {
+        'id': 4,
+        'name': 'crayola',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 5,
+        'name': 'folgers',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 6,
+        'name': 'heineken',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 7,
+        'name': 'hunts',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 8,
+        'name': 'kellogg',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 9,
+        'name': 'kleenex',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 10,
+        'name': 'kotex',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 11,
+        'name': 'libava',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 12,
+        'name': 'macadamia',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 13,
+        'name': 'milo',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 14,
+        'name': 'mm',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 15,
+        'name': 'pocky',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 16,
+        'name': 'raisins',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 17,
+        'name': 'stax',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 18,
+        'name': 'swissmiss',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 19,
+        'name': 'vanish',
+        'supercategory': 'brandname',
+    },
+    {
+        'id': 20,
+        'name': 'viva',
+        'supercategory': 'brandname',
+    },
+    
 ]
 
 def filter_for_jpeg(root, files):
@@ -86,6 +178,7 @@ def main():
 
         # go through each image
         for image_filename in image_files:
+            
             image = Image.open(image_filename)
             image_info = pycococreatortools.create_image_info(
                 image_id, os.path.basename(image_filename), image.size)
@@ -98,17 +191,54 @@ def main():
                 # go through each associated annotation
                 for annotation_filename in annotation_files:
                     
-                    print(annotation_filename)
-                    class_id = [x['id'] for x in CATEGORIES if x['name'] in annotation_filename][0]
-
+                    if '3m' in annotation_filename:
+                        class_id  = 1
+                    elif 'andes' in annotation_filename:
+                        class_id = 2
+                    elif 'cocacola' in annotation_filename:
+                        class_id = 3
+                    elif 'crayola' in annotation_filename:
+                        class_id = 4
+                    elif 'folgers' in annotation_filename:
+                        class_id = 5
+                    elif 'heineken' in annotation_filename:
+                        class_id = 6
+                    elif 'hunts' in annotation_filename:
+                        class_id = 7
+                    elif 'kellogg' in annotation_filename:
+                        class_id = 8
+                    elif 'kleenex' in annotation_filename:
+                        class_id = 9
+                    elif 'kotex' in annotation_filename:
+                        class_id = 10
+                    elif 'libava' in annotation_filename:
+                        class_id = 11
+                    elif 'macadamia' in annotation_filename:
+                        class_id = 12
+                    elif 'milo' in annotation_filename:
+                        class_id = 13
+                    elif 'mm' in annotation_filename:
+                        class_id = 14
+                    elif 'pocky' in annotation_filename:
+                        class_id = 15
+                    elif 'raisins' in annotation_filename:
+                        class_id = 16
+                    elif 'stax' in annotation_filename:
+                        class_id = 17
+                    elif 'swissmiss' in annotation_filename:
+                        class_id = 18
+                    elif 'vanish' in annotation_filename:
+                        class_id = 19
+                    else:
+                        class_id = 20
+                    
                     category_info = {'id': class_id, 'is_crowd': 'crowd' in image_filename}
                     binary_mask = np.asarray(Image.open(annotation_filename)
                         .convert('1')).astype(np.uint8)
-                    
                     annotation_info = pycococreatortools.create_annotation_info(
                         segmentation_id, image_id, category_info, binary_mask,
                         image.size, tolerance=2)
-
+                    print(image_id)
                     if annotation_info is not None:
                         coco_output["annotations"].append(annotation_info)
 
@@ -116,7 +246,7 @@ def main():
 
             image_id = image_id + 1
 
-    with open('{}/instances_shape_train2018.json'.format(ROOT_DIR), 'w') as output_json_file:
+    with open('{}/{}.json'.format(ROOT_DIR,outputname), 'w') as output_json_file:
         json.dump(coco_output, output_json_file)
 
 
