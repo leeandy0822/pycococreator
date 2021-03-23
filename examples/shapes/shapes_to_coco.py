@@ -13,7 +13,7 @@ from pycococreatortools import pycococreatortools
 outputname = sys.argv[1]
 print(outputname)
 
-ROOT_DIR = "validation"
+ROOT_DIR = outputname
 IMAGE_DIR = os.path.join(ROOT_DIR, 'all')
 ANNOTATION_DIR = os.path.join(ROOT_DIR,"all-annotation")
 
@@ -24,7 +24,7 @@ INFO = {
     "url": "https://github.com/waspinator/pycococreator",
     "version": "0.1.0",
     "year": 2021,
-    "contributor": "AndyLee",
+    "contributor": "Waspinator,AndyLee",
     "date_created": datetime.datetime.utcnow().isoformat(' ')
 }
 
@@ -238,7 +238,7 @@ def main():
                     annotation_info = pycococreatortools.create_annotation_info(
                         segmentation_id, image_id, category_info, binary_mask,
                         image.size, tolerance=2)
-                    print(image_id)
+                    print(str(image_id)+ " images write into the json file,{} left".format(len(image_files)-image_id))
                     if annotation_info is not None:
                         coco_output["annotations"].append(annotation_info)
 
