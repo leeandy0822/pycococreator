@@ -8,14 +8,20 @@ import re
 import fnmatch
 from PIL import Image
 import numpy as np
+import sys
+sys.path.append('/content/pycococreator')
+
 from pycococreatortools import pycococreatortools
 
+
+
+
 outputname = sys.argv[1]
-print(outputname)
+json_name = sys.argv[2]
 
 ROOT_DIR = outputname
 IMAGE_DIR = os.path.join(ROOT_DIR, 'JPEGImages')
-ANNOTATION_DIR = os.path.join(ROOT_DIR,"LableImages")
+ANNOTATION_DIR = os.path.join(ROOT_DIR,"LabelImages")
 
 
 
@@ -246,7 +252,7 @@ def main():
 
             image_id = image_id + 1
 
-    with open('{}/{}.json'.format(ROOT_DIR,outputname), 'w') as output_json_file:
+    with open('{}/{}.json'.format(ROOT_DIR,json_name), 'w') as output_json_file:
         json.dump(coco_output, output_json_file)
 
 
