@@ -14,8 +14,8 @@ outputname = sys.argv[1]
 print(outputname)
 
 ROOT_DIR = outputname
-IMAGE_DIR = os.path.join(ROOT_DIR, 'all')
-ANNOTATION_DIR = os.path.join(ROOT_DIR,"all-annotation")
+IMAGE_DIR = os.path.join(ROOT_DIR, 'JPEGImages')
+ANNOTATION_DIR = os.path.join(ROOT_DIR,"LableImages")
 
 
 
