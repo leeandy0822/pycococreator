@@ -244,7 +244,7 @@ def main():
                     annotation_info = pycococreatortools.create_annotation_info(
                         segmentation_id, image_id, category_info, binary_mask,
                         image.size, tolerance=2)
-                    print(str(image_id)+ " images write into the json file,{} left".format(len(image_files)-image_id))
+                    print(str(image_id)+ " images write into the {}.json,{} left".format(json_name,len(image_files)-image_id))
                     if annotation_info is not None:
                         coco_output["annotations"].append(annotation_info)
 
